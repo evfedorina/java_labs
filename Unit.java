@@ -1,5 +1,5 @@
 abstract class Unit {
-    int HP, CASH, x, y;
+    int HP, CASH, AMMU, x, y;
     Field field;
     Unit(Field field, int x, int y){
         this.field = field;
@@ -7,6 +7,7 @@ abstract class Unit {
         this.y = y;
         HP = 3;
         CASH = 20;
+        AMMU = 0;
     }
     abstract void move(char key);
 }

@@ -11,10 +11,16 @@ public class Main {
         Unit unit;
         System.out.println("CHOOSE YOUR FIGHTER");
         System.out.println("TO BE A JUMPER, ENTER '0' (ZERO)");
-        System.out.println("TO BE A NORMAL PERSON, TYPE ANY OTHER NUMBER");
-        if (reader.nextInt() == 0){
+        System.out.println("TO BE A BREAKER, ENTER '1'");
+        System.out.println("TO BE A NORMAL PERSON, ENTER '2'");
+        int FIGHTER = reader.nextInt();
+        if (FIGHTER == 0){
             unit = new Jumper(field, 5, 5);
             System.out.println("NOW U ARE JUMPER, HIS STEP IS 2 CELLS");
+        }
+        else if (FIGHTER == 1){
+            unit = new Breaker(field, 5, 5);
+            System.out.println("NOW U ARE BREAKER, HE CAN BREAK WALLS");
         }
         else{
             unit = new Standard(field, 5, 5);
@@ -87,5 +93,10 @@ class Field
         if (x < 0 || x >= w || y < 0 || y >= h){
             return false;}
         return matrix[y][x] != '|';
+    }
+    boolean isWall(int y, int x){
+        if (x < 0 || x >= w || y < 0 || y >= h){
+            return false;}
+        return matrix[y][x] == '|';
     }
 }
