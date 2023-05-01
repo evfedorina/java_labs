@@ -10,21 +10,21 @@ public class Main {
         field.fill();
         Unit unit;
         System.out.println("CHOOSE YOUR FIGHTER");
-        System.out.println("TO BE A JUMPER, ENTER '0' (ZERO)");
+        System.out.println("TO BE A SELLER, ENTER '0' (ZERO)");
         System.out.println("TO BE A BREAKER, ENTER '1'");
         System.out.println("TO BE A NORMAL PERSON, ENTER '2'");
         int FIGHTER = reader.nextInt();
         if (FIGHTER == 0){
-            unit = new Jumper(field, 5, 5);
-            System.out.println("NOW U ARE JUMPER, HIS STEP IS 2 CELLS");
+            unit = new Seller(field, 5, 5);
+            System.out.println("NOW U ARE A SELLER, HE CAN COLLECT NEARBY MONEY(type 'r') OR SELL NEARBY THORNS(type 't')");
         }
         else if (FIGHTER == 1){
             unit = new Breaker(field, 5, 5);
-            System.out.println("NOW U ARE BREAKER, HE CAN BREAK WALLS");
+            System.out.println("NOW U ARE A BREAKER, HE CAN BREAK WALLS(JUST type 'g' if you are near a wall)");
         }
         else{
             unit = new Standard(field, 5, 5);
-            System.out.println("NOW U ARE NORMAL PERSON, HIS STEP IS 1 CELL");
+            System.out.println("NOW U ARE A NORMAL PERSON, HIS STEP IS 1 CELL");
         }
 
         field.output(unit);
@@ -33,6 +33,15 @@ public class Main {
             key = reader.next().charAt(0);
             unit.move(key);
             field.output(unit);
+            if (key == 'g' && FIGHTER == 1){
+                System.out.println("AAAGGH!!! I'VE BROKEN ALL THE NEARBY WALLS! ME STONK!");
+            }
+            if (key == 'r' && FIGHTER == 0){
+                System.out.println("COLLECTED ALL THE MONEY AROUND HERE. SO SWEET");
+            }
+            if (key == 't' && FIGHTER == 0){
+                System.out.println("I DON'T KNOW WHY NOBODY CAN SELL THESE, BUT I SURELY CAN, JUST FREE MONEY");
+            }
             if (unit.HP <= 0){
                 key = 'e';}
         } while (key != 'e');
@@ -84,7 +93,7 @@ class Field
                 else
                     System.out.print(matrix[i][j]);
             System.out.println();}
-        System.out.println(("HP: " + unit.HP + " CASH: " + unit.CASH));
+        System.out.println(("HP: " + unit.HP + " CASH: " + unit.CASH + " AMMU: " + unit.AMMU));
         if (unit.HP <= 0){
             System.out.println("BRO U DED");
         }
@@ -98,5 +107,15 @@ class Field
         if (x < 0 || x >= w || y < 0 || y >= h){
             return false;}
         return matrix[y][x] == '|';
+    }
+    boolean isThorn(int y, int x){
+        if (x < 0 || x >= w || y < 0 || y >= h){
+            return false;}
+        return matrix[y][x] == '*';
+    }
+    boolean isDollar(int y, int x){
+        if (x < 0 || x >= w || y < 0 || y >= h){
+            return false;}
+        return matrix[y][x] == '$';
     }
 }

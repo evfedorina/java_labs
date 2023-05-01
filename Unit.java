@@ -5,7 +5,7 @@ abstract class Unit {
         this.field = field;
         this.x = x;
         this.y = y;
-        HP = 3;
+        HP = 10;
         CASH = 20;
         AMMU = 0;
     }

@@ -37,7 +37,7 @@ class Breaker extends Unit{
             field.matrix[ny][nx] = '_';
         }
         else if(field.canGO(ny,nx) && field.matrix[ny][nx] == '*'){
-            HP -= 20;
+            HP -= 2;
             field.matrix[ny][nx] = '_';}
         x = nx;
         y = ny;
