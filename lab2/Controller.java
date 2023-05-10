@@ -27,16 +27,16 @@ public class Controller implements KeyListener{
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_W:
-                label.setLocation(label.getX(), label.getY()-5);
+                label.setLocation(label.getX(), label.getY()-100);
                 break;
             case KeyEvent.VK_D:
-                label.setLocation(label.getX()+5, label.getY());
+                label.setLocation(label.getX()+100, label.getY());
                 break;
             case KeyEvent.VK_A:
-                label.setLocation(label.getX()-5, label.getY());
+                label.setLocation(label.getX()-100, label.getY());
                 break;
             case KeyEvent.VK_S:
-                label.setLocation(label.getX(), label.getY()+5);
+                label.setLocation(label.getX(), label.getY()+100);
                 break;
         }
     }

@@ -1,3 +1,8 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Random;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
@@ -5,16 +10,21 @@ import java.awt.*;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main extends JFrame{
     Main(){
-        super("App");
-        setSize(1280, 720);
+        super("UwU App");
+        setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
         setDefaultCloseOperation(3);
         setLayout(null);
         JButton button = new JButton("НАЖМИ КНОПКУ");
-        button.setBounds(20, 20, 200, 140);
+        JLabel label = new JLabel(new ImageIcon("1.png"));
+        Controller controller = new Controller(label);
+        button.addKeyListener(controller);
+        label.setBounds(700, 400, 367, 500);
+        add(label);
+        button.setBounds(100, 200, 200, 140);
         add(button);
         button.addActionListener(new Listener(button));
         JButton button2 = new JButton("НАЖМИ КНОПКУ");
-        button2.setBounds(100, 500, 200, 140);
+        button2.setBounds(300, 400, 200, 140);
         add(button2);
         Listener listener = new Listener(button2);
         Listener listener2 = new Listener(button);
@@ -26,15 +36,104 @@ public class Main extends JFrame{
         add(textArea);
         textArea.setFont(new Font("Arial", 2, 20));
         JTextField textField = new JTextField();
-        textField.setBounds(500, 500, 100, 100);
+        textField.setBounds(450, 125, 100, 100);
         add(textField);
         Chat chat = new Chat(textField, textArea);
         textField.addActionListener(chat);
-        JLabel label = new JLabel(new ImageIcon("1.jpeg"));
-        Controller controller = new Controller(label);
-        button.addKeyListener(controller);
-        label.setBounds(400, 400, 200, 200);
-        add(label); 
+
+        JPanel gamePanel = new JPanel();
+        gamePanel.setBounds(0,0,getWidth(),getHeight());
+        gamePanel.setLayout(null);
+        add(gamePanel);
+        gamePanel.add(button);
+
+        JButton gameButton = new JButton("Game");
+        gameButton.setBounds(0,0,200,25);
+        add(gameButton);
+        gameButton.addActionListener(new ActionListener() {
+            boolean visible = true;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                visible = !visible;
+                gamePanel.setVisible(visible);
+            }
+        });
+        JLabel label1 = new JLabel(new ImageIcon("wall.png"));
+        label1.setBounds(600, 50, 200, 40);
+        add(label1);
+        JButton runningButton = new JButton("Change Color");
+        runningButton.setBounds(800,30,120,40);
+        gamePanel.add(runningButton);
+        runningButton.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random rng = new Random();
+                runningButton.setForeground(new Color(rng.nextInt(256),rng.nextInt(256),rng.nextInt(256)));
+                runningButton.setBackground(new Color(rng.nextInt(256),rng.nextInt(256),rng.nextInt(256)));
+                runningButton.setOpaque(true);
+                runningButton.setBorderPainted(false);
+            }
+        }));
+        runningButton.addMouseListener((new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               /// Random rng = new Random();
+               /// int dx = rng.nextInt(-80,80);
+              ///  int dy = rng.nextInt(-80,80);
+              ///  runningButton.setLocation(runningButton.getX() + dx, runningButton.getY() + dy);
+                int dx = runningButton.getWidth()/2-e.getX();
+                int dy = runningButton.getHeight()/2-e.getY();
+                int x = runningButton.getX() + dx;
+                int y = runningButton.getY() + dy;
+                if(x<0){
+                    x=0;
+                }
+                if(x + runningButton.getWidth() > gamePanel.getWidth()){
+                    x = x - runningButton.getWidth();
+                }
+                if(y<0){
+                    y=0;
+                }
+                if(y + runningButton.getHeight() > gamePanel.getHeight()){
+                    y = y - runningButton.getHeight();
+                }
+                runningButton.setLocation(x,y);
+                if(runningButton.getBounds().intersects(button.getBounds())){
+                    button.setEnabled(false);
+                }
+                else
+                    button.setEnabled(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        }));
+        Timer timer = new Timer(10, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Random rng = new Random();
+                int dx = rng.nextInt(-60,61);
+                int dy = rng.nextInt(-60,61);
+                label.setLocation(label.getX() + dx,label.getY() + dy);
+            }
+        });
+        timer.start();
         setVisible(true);
     }
     public static void main(String[] args){
