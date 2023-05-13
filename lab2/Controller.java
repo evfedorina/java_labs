@@ -13,6 +13,7 @@ public class Controller implements KeyListener{
     Controller(JLabel label){
         this.label = label;
     }
+    
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
