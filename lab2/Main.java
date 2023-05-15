@@ -16,9 +16,10 @@ public class Main extends JFrame{
         setDefaultCloseOperation(3);
         setLayout(null);
 
-        ImagePanel imagePanel = new ImagePanel("giphy.gif");
-        imagePanel.setBounds(0, 0, getWidth(), getHeight());
-        add(imagePanel);
+        ImageIcon backgroundImage = new ImageIcon("giphy.gif");
+        JLabel backgroundLabel = new JLabel(backgroundImage);
+        backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
+        add(backgroundLabel);
 
         JPanel menuPanel = new JPanel();
         menuPanel.setBounds(0,0,getWidth(),getHeight());
@@ -136,19 +137,4 @@ public class Main extends JFrame{
     public static void main(String[] args){
         new Main();
     }
-    static class ImagePanel extends JPanel {
-        private Image image;
-
-        ImagePanel(String imagePath) {
-            image = new ImageIcon(imagePath).getImage();
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
-        }
-    }
-
-
 }
