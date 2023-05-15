@@ -30,6 +30,17 @@ public class Main extends JFrame {
         backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
         add(backgroundLabel);
 
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(getWidth() / 2 - 150, getHeight() / 2 + 120, 300, 30);
+        menuPanel.add(exitButton);
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0); // Завершение программы
+            }
+        });
+
+
         JButton gameButton = new JButton("START GAME");
         gameButton.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 35, 200, 70);
         gameButton.setBackground(new Color(255, 255, 255, 100));
