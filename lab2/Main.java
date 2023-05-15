@@ -12,15 +12,21 @@ public class Main extends JFrame{
 
     Main(){
         super("Menu");
-        setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
+        setSize(512, 512);
         setDefaultCloseOperation(3);
         setLayout(null);
-        JButton gameButton = new JButton("START GAME");
-        gameButton.setBounds(getWidth()/2-100, getHeight()/2-70, 200, 140);
+
+        ImagePanel imagePanel = new ImagePanel("giphy.gif");
+        imagePanel.setBounds(0, 0, getWidth(), getHeight());
+        add(imagePanel);
+
         JPanel menuPanel = new JPanel();
         menuPanel.setBounds(0,0,getWidth(),getHeight());
         menuPanel.setLayout(null);
         add(menuPanel);
+
+        JButton gameButton = new JButton("START GAME");
+        gameButton.setBounds(getWidth()/2-100, getHeight()/2-35, 200, 70);
         menuPanel.add(gameButton);
         gameButton.addActionListener(new ActionListener() {
                 boolean visible = true;
@@ -130,4 +136,19 @@ public class Main extends JFrame{
     public static void main(String[] args){
         new Main();
     }
+    static class ImagePanel extends JPanel {
+        private Image image;
+
+        ImagePanel(String imagePath) {
+            image = new ImageIcon(imagePath).getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+
+
 }
