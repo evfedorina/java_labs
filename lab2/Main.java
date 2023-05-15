@@ -2,13 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
 
 public class Main extends JFrame {
 
     private JComboBox<String> difficultyComboBox;
+    private Clip menuMusicClip;
+    private static Clip gameMusicClip;
 
     Main() {
         super("Menu");
+        playMenuMusic();
         setSize(512, 512);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
@@ -34,6 +40,7 @@ public class Main extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                stopMenuMusic(); // Остановка музыки меню
                 String difficulty = (String) difficultyComboBox.getSelectedItem();
                 int dHealth;
                 int dDist;
@@ -47,7 +54,8 @@ public class Main extends JFrame {
                     dHealth = 250;
                     dDist = 150;
                 }
-                new Game(dHealth, dDist);
+                new Game(Main.this, dHealth, dDist);
+                playGameMusic();
             }
         });
 
@@ -70,8 +78,44 @@ public class Main extends JFrame {
             }
         });
 
+
         setVisible(true);
     }
+
+    public void playMenuMusic() {
+        try {
+            menuMusicClip = AudioSystem.getClip();
+            menuMusicClip.open(AudioSystem.getAudioInputStream(new File("MenuMusic.wav")));
+            menuMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopMenuMusic() {
+        if (menuMusicClip != null && menuMusicClip.isRunning()) {
+            menuMusicClip.stop();
+            menuMusicClip.close();
+        }
+    }
+
+    public void playGameMusic() {
+        try {
+            Main.gameMusicClip = AudioSystem.getClip();
+            Main.gameMusicClip.open(AudioSystem.getAudioInputStream(new File("GameMusic.wav")));
+            Main.gameMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void stopGameMusic() {
+        if (Main.gameMusicClip != null && Main.gameMusicClip.isRunning()) {
+            Main.gameMusicClip.stop();
+            Main.gameMusicClip.close();
+        }
+    }
+
 
     public static void main(String[] args) {
         new Main();

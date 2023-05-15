@@ -11,6 +11,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class Game extends JFrame{
+    private Main main;
     void endGame(int score){
         JTextArea rip = new JTextArea();
         rip.setFont(new Font("Arial", 2, 60));
@@ -26,13 +27,16 @@ public class Game extends JFrame{
         toMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                main.stopGameMusic();
                 setVisible(false);
+                main.playMenuMusic();
             }
         });
     }
 
-    Game(int dHealth, int dDist){
+    Game(Main main, int dHealth, int dDist){
         super("Game");
+        this.main = main;
         setSize(Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height);
         setDefaultCloseOperation(3);
         setLayout(null);
