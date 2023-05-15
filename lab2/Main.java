@@ -16,6 +16,7 @@ public class Main extends JFrame{
         setDefaultCloseOperation(3);
         setLayout(null);
 
+
         JPanel menuPanel = new JPanel();
         menuPanel.setBounds(0,0,getWidth(),getHeight());
         menuPanel.setLayout(null);
