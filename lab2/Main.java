@@ -16,18 +16,21 @@ public class Main extends JFrame{
         setDefaultCloseOperation(3);
         setLayout(null);
 
+        JPanel menuPanel = new JPanel();
+        menuPanel.setBounds(0,0,getWidth(),getHeight());
+        menuPanel.setLayout(null);
+        menuPanel.setBackground(new Color(0, 0, 0, 0));
+        add(menuPanel);
+
         ImageIcon backgroundImage = new ImageIcon("giphy.gif");
         JLabel backgroundLabel = new JLabel(backgroundImage);
         backgroundLabel.setBounds(0, 0, getWidth(), getHeight());
         add(backgroundLabel);
 
-        JPanel menuPanel = new JPanel();
-        menuPanel.setBounds(0,0,getWidth(),getHeight());
-        menuPanel.setLayout(null);
-        add(menuPanel);
-
         JButton gameButton = new JButton("START GAME");
         gameButton.setBounds(getWidth()/2-100, getHeight()/2-35, 200, 70);
+        gameButton.setBackground(new Color(255, 255, 255, 100));
+        gameButton.setFont(new Font("Arial", 2, 20));
         menuPanel.add(gameButton);
         gameButton.addActionListener(new ActionListener() {
                 boolean visible = true;
