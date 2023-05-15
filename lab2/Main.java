@@ -26,7 +26,7 @@ public class Main extends JFrame{
                 boolean visible = true;
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    new Game();
+                    new Game(1000, 151);
                 }
             });
         setVisible(true);
