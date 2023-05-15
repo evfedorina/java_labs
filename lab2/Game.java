@@ -7,6 +7,8 @@ import java.util.Random;
 import java.util.Scanner;
 import javax.swing.*;
 import java.awt.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class Game extends JFrame{
     void endGame(int score){
@@ -22,11 +24,11 @@ public class Game extends JFrame{
         toMenu.setFont(new Font("Arial", 2, 60));
         add(toMenu);
         toMenu.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    setVisible(false);
-                }
-            });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
     }
 
     Game(int dHealth, int dDist){
@@ -48,11 +50,11 @@ public class Game extends JFrame{
         add(mes);
         mes.setBackground(new Color(rng.nextInt(150)+50, rng.nextInt(150)+50, rng.nextInt(150)+50, 0));
         Timer timer = new Timer(10, new ActionListener() {
-                int health = dHealth;
-                int score = 0;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(health>0){
+            int health = dHealth;
+            int score = 0;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(health>0){
                     Random rng = new Random();
                     int dx = rng.nextInt(dDist) - dDist/2;
                     int dy = rng.nextInt(dDist) - dDist/2;
@@ -62,8 +64,8 @@ public class Game extends JFrame{
                     else score++;
                     mes.setText("Health: " + Integer.toString(health) + "\n Score: " + Integer.toString(score));
                     if(health==0) {endGame(score);}}
-                }
-            });
+            }
+        });
         timer.start();
         setVisible(true);
     }
