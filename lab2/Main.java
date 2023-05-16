@@ -31,7 +31,10 @@ public class Main extends JFrame {
         add(backgroundLabel);
 
         JButton exitButton = new JButton("Exit");
-        exitButton.setBounds(getWidth() / 2 - 150, getHeight() / 2 + 120, 300, 30);
+        exitButton.setBounds(getWidth() / 2 - 150, getHeight() / 2 + 120, 300, 50);
+        exitButton.setBackground(new Color(0, 0, 0, 0));
+        exitButton.setForeground(new Color(255, 255, 255));
+        exitButton.setFont(new Font("Arial", 1, 20));
         menuPanel.add(exitButton);
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -42,12 +45,12 @@ public class Main extends JFrame {
 
 
         JButton gameButton = new JButton("START GAME");
-        gameButton.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 35, 200, 70);
-        gameButton.setBackground(new Color(255, 255, 255, 100));
-        gameButton.setFont(new Font("Arial", 2, 20));
+        gameButton.setBounds(getWidth() / 2 - 200, getHeight() / 2 - 35, 400, 70);
+        gameButton.setBackground(new Color(255, 255, 255, 0));
+        gameButton.setFont(new Font("Arial", 2, 30));
+        gameButton.setForeground(new Color(255, 255, 255));
         menuPanel.add(gameButton);
         gameButton.addActionListener(new ActionListener() {
-            boolean visible = true;
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,13 +60,13 @@ public class Main extends JFrame {
                 int dDist;
                 if (difficulty.equals("Newbee")) {
                     dHealth = 1000;
-                    dDist = 50;
+                    dDist = 51;
                 } else if (difficulty.equals("Normal Person")) {
                     dHealth = 500;
-                    dDist = 100;
+                    dDist = 101;
                 } else {
                     dHealth = 250;
-                    dDist = 150;
+                    dDist = 151;
                 }
                 new Game(Main.this, dHealth, dDist);
                 playGameMusic();
@@ -72,12 +75,18 @@ public class Main extends JFrame {
 
         String[] difficultyOptions = {"Newbee", "Normal Person", "Acid man"};
         difficultyComboBox = new JComboBox<>(difficultyOptions);
-        difficultyComboBox.setBounds(getWidth() / 2 - 100, getHeight() / 2 + 40, 200, 30);
+        difficultyComboBox.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 170, 200, 50);
+        difficultyComboBox.setBackground(new Color(0, 0, 0, 0));
+        difficultyComboBox.setForeground(new Color(255, 255, 255));
+        difficultyComboBox.setFont(new Font("Arial", 1, 20));
         difficultyComboBox.setVisible(false);
         menuPanel.add(difficultyComboBox);
 
         JButton selectDifficultyButton = new JButton("Select Difficulty Level");
-        selectDifficultyButton.setBounds(getWidth() / 2 - 150, getHeight() / 2 + 80, 300, 30);
+        selectDifficultyButton.setBounds(getWidth() / 2 - 150, getHeight() / 2 - 230, 300, 50);
+        selectDifficultyButton.setBackground(new Color(0, 0, 0, 0));
+        selectDifficultyButton.setForeground(new Color(255, 255, 255));
+        selectDifficultyButton.setFont(new Font("Arial", 1, 20));
         menuPanel.add(selectDifficultyButton);
         selectDifficultyButton.addActionListener(new ActionListener() {
             boolean visible = true;

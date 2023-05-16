@@ -66,7 +66,7 @@ public class Game extends JFrame{
                     getContentPane().setBackground(new Color(rng.nextInt(150)+50, rng.nextInt(150)+50, rng.nextInt(150)+50));
                     if(label.getX()<0 || label.getY()<0 || label.getX()+367>getWidth() || label.getY()+500>getHeight()) health--;
                     else score++;
-                    mes.setText("Health: " + Integer.toString(health) + "\n Score: " + Integer.toString(score));
+                    mes.setText("Health: " + Integer.toString(health) + "\nScore: " + Integer.toString(score));
                     if(health==0) {endGame(score);}}
             }
         });
