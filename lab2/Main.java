@@ -45,6 +45,7 @@ public class Main extends JFrame {
         gameButton.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 35, 200, 70);
         gameButton.setBackground(new Color(255, 255, 255, 100));
         gameButton.setFont(new Font("Arial", 2, 20));
+
         menuPanel.add(gameButton);
         gameButton.addActionListener(new ActionListener() {
             boolean visible = true;
