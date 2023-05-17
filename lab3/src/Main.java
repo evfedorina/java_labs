@@ -8,7 +8,7 @@ import java.awt.geom.AffineTransform;
 // then press Enter. You can now see whitespace characters in your code.
 class Main extends JFrame {
     JButton button;
-    int x=40,y=40,w=250,h=250;
+    int x=40,y=40,w=250,h=250; int angle = 0;
     Image img;
     Main(){
         super("Name");
@@ -24,6 +24,7 @@ class Main extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 x+=1;
+                angle += 10;
                 repaint();
             }
         });
@@ -37,9 +38,11 @@ class Main extends JFrame {
         Graphics2D g2 = (Graphics2D) g;
         AffineTransform at = g2.getTransform();
         g2.drawImage(img,x,y+100,w,h,null);
-        at.rotate(Math.toRadians(90),x + w, y + h);
+        at.rotate(Math.toRadians(angle),x + w/2, y + h/2);
         g2.setTransform(at);
         g2.drawImage(img,x, y, w, h, null);
+        g2.drawImage(img,x+200, y+200, w, h, null);
+        g2.drawImage(img,x+400, y+200, w, h, null);
     }
 
     public static void main (String[]args){
